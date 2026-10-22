@@ -1,0 +1,14 @@
+<svg width="80" height="36" viewBox="0 0 80 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Componentes">
+<g id="obstacle/mound">
+<g id="Frame">
+<path id="Vector" d="M3 33C14 6 30 3 40 3C52 3 66 8 77 33H3Z" fill="#F5F5F5" stroke="black" stroke-width="3" stroke-linejoin="round"/>
+<path id="Vector_2" d="M48 5C60 9 69 16 77 33H56C55 22 53 12 48 5Z" fill="#CFD8DC"/>
+<g id="Vector_3">
+<path d="M18 22H30H18ZM26 14H34H26Z" fill="black"/>
+<path d="M18 22H30M26 14H34" stroke="black" stroke-width="3" stroke-linecap="round"/>
+</g>
+</g>
+</g>
+</g>
+</svg>
