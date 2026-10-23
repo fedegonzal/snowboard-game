@@ -39,7 +39,7 @@ export const OBSTACLES = {
 
 export const RIDER = {
   size: 28,            // lado del rectángulo de colisión
-  lateralSpeed: 220,   // velocidad lateral base
+  lateralSpeed: MOBILE ? 165 : 220, // velocidad lateral base; más lenta en el celular, donde la pista ocupa todo el ancho
   turnFactor: 0.8,     // velocidad de bajada mientras se mueve lateralmente
   maxBoost: 3,         // velocidad máxima con el acelerador, en veces la del tramo
   accelTime: 6,        // tiempo de 0 a la velocidad máxima
