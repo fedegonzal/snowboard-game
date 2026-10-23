@@ -112,4 +112,4 @@ El diseño de referencia está en Figma, página «Pista – en juego» del arch
 
 ## 12. Fuera de alcance
 
-Sonido, animaciones elaboradas, juego en red, mandos o controles táctiles, accesibilidad avanzada, límite de tiempo, pausa, curvas o rampas en la pista, desbloqueos y validación de los tiempos en el servidor.
+Música, animaciones elaboradas, juego en red, mandos o controles táctiles, accesibilidad avanzada, límite de tiempo, pausa, curvas o rampas en la pista, desbloqueos y validación de los tiempos en el servidor.

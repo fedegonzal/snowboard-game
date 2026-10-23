@@ -15,11 +15,12 @@ Criterio rector: pocos conceptos, poca configuración y código fácil de leer e
 | ARQ-03 | Motor | Phaser 3, instalado con npm. | Resuelve escenas, entrada de teclado, colisiones simples y cámaras múltiples para la pantalla dividida. |
 | ARQ-04 | Servidor y build | Vite, sin framework de interfaz. | `npm run dev` levanta localhost; mínima configuración. |
 | ARQ-05 | Interfaz | Menús, HUD y textos dibujados con Phaser, con la tipografía Fredoka. Sin HTML/CSS adicional salvo la página base. | Un solo modelo de interfaz. |
-| ARQ-06 | Gráficos | Ilustraciones SVG exportadas del diseño de Figma en `public/assets/`; el resto (pista, bordes, botones) se dibuja con formas de Phaser. Los colores del jugador se aplican reemplazando colores en el SVG al cargarlo. Sin sonido. | Mantiene el juego fiel al diseño con pocos archivos. |
+| ARQ-06 | Gráficos | Ilustraciones SVG exportadas del diseño de Figma en `public/assets/`; el resto (pista, bordes, botones) se dibuja con formas de Phaser. Los colores del jugador se aplican reemplazando colores en el SVG al cargarlo. | Mantiene el juego fiel al diseño con pocos archivos. |
 | ARQ-07 | Persistencia | Tabla `scores` en Supabase (Postgres), accedida con `fetch` a su API REST y la clave pública, sin SDK. Se guardan todos los tiempos; el top 10 es la consulta ordenada por tiempo y antigüedad. Los permisos solo dejan leer e insertar nombre y tiempo. El esquema está en `supabase/schema.sql`; la URL y la clave, en `config.js`. | Un único top 10 compartido entre quienes juegan en Internet, sin servidor propio. Sin validación en el servidor: quien lea el código puede enviar tiempos falsos, aceptable para la demo. |
 | ARQ-08 | Controles | Solo teclado, según MOV-02. Probar en el equipo de la demo que las pulsaciones simultáneas funcionan. | Teclado compartido entre dos personas. |
 | ARQ-09 | Conexión | Todas las dependencias se instalan localmente, incluida la fuente (paquete `@fontsource/fredoka`). Solo el top 10 usa Internet; sin conexión se juega igual y el top 10 muestra un error, sin copia local. | Un solo top 10, sin dos fuentes de verdad. |
 | ARQ-11 | Escalado | Escala `FIT` de Phaser centrada: el lienzo de 960×600 se escala a la ventana conservando la proporción. La pantalla completa usa la API del navegador a través de `scale.toggleFullscreen()`, con un único manejador de teclado en `main.js`. | Pantalla completa sin redibujar ni cambiar coordenadas. |
+| ARQ-12 | Sonido | Efectos WAV sintetizados por `tools/generate-sounds.py` (solo biblioteca estándar de Python) en `public/assets/sounds/`, reproducidos con el gestor de sonido de Phaser. El deslizamiento sigue la velocidad del jugador; caída, salto, tramo, llegada y menús disparan su efecto. | Sin archivos de audio de terceros ni licencias. |
 | ARQ-10 | Pruebas | Verificación manual con los criterios de aceptación de la especificación. Sin framework de tests. | Suficiente para el alcance de la demo. |
 
 ## 3. Estructura del proyecto
@@ -27,7 +28,8 @@ Criterio rector: pocos conceptos, poca configuración y código fácil de leer e
 ```
 index.html
 package.json
-public/assets/       Ilustraciones SVG exportadas de Figma
+public/assets/       Ilustraciones SVG exportadas de Figma y efectos de sonido (sounds/)
+tools/               Generador de los efectos de sonido
 supabase/schema.sql  Tabla y permisos del top 10
 src/
   main.js            Configuración de Phaser, escalado, pantalla completa y lista de escenas
@@ -49,6 +51,7 @@ src/
     riderView.js     Dibujo del jugador y sus estados
     hud.js           Tramo, cronómetro, nombre y mensajes
     ui.js            Botones, selectores, barras y teclas para los menús
+    sounds.js        Carga y reproducción de los efectos de sonido
 ```
 
 La lógica de `src/game/` no depende de `src/render/`: cambiar la presentación no cambia las reglas.
