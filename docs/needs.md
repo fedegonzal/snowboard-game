@@ -17,3 +17,4 @@ Queremos que el personaje se pueda personalizar antes de la carrera: casco, camp
 - Si juega una sola persona, se usan las flechas en lugar de las letras.
 - La flecha hacia abajo (y la `S`) deja de frenar y pasa a acelerar: mientras se mantiene se va cada vez más rápido, hasta tres veces la velocidad base que marca el color de la pista. Al soltarla se frena hasta detenerse en dos segundos.
 - Se puede poner el juego en pantalla completa, escalando la imagen.
+- El juego se publica en Internet y el top 10 es compartido: quienes juegan desde distintos lugares compiten en una única tabla.

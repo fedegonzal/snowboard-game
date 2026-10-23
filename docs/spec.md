@@ -66,9 +66,10 @@ Las decisiones técnicas están en [architec.md](./architec.md).
 
 | ID | Requisito |
 | --- | --- |
-| CLA-01 | Solo el modo individual registra tiempos. Se guardan los diez mejores en el navegador del equipo. |
+| CLA-01 | Solo el modo individual registra tiempos. El top 10 es único y compartido por todas las personas que juegan en Internet. |
 | CLA-02 | Una persona puede ocupar varias posiciones. Entre tiempos iguales queda primero el más antiguo; un tiempo igual al décimo no entra. |
-| CLA-03 | El top 10 se puede ver desde el menú principal. Si un tiempo entra al top 10, al terminar la carrera se muestra la tabla con esa posición resaltada en el color de la campera, y luego el resultado. |
+| CLA-03 | El top 10 se puede ver desde el menú principal; mientras se carga se muestra «Cargando…». Si un tiempo entra al top 10, al terminar la carrera se muestra la tabla con esa posición resaltada en el color de la campera, y luego el resultado. |
+| CLA-04 | Al terminar una carrera individual se muestra «Guardando…» hasta que se registra el tiempo. Sin conexión, el top 10 muestra «No se pudo cargar el top 10» y el resultado indica «No se pudo guardar el tiempo»; no hay copia local. |
 
 ## 9. Pantallas
 
@@ -106,8 +107,9 @@ El diseño de referencia está en Figma, página «Pista – en juego» del arch
 | ACE-05 | Se mantiene el acelerador y luego se suelta. | La velocidad crece hasta tres veces la base del tramo y, al soltar, se detiene en dos segundos (MOV-03). |
 | ACE-08 | Se pulsa `F` en el menú o en la carrera. | El juego pasa a pantalla completa escalado sin deformarse; otra pulsación lo devuelve a la ventana. |
 | ACE-06 | Ambas personas llegan con el mismo tiempo en décimas. | Se declara empate. |
-| ACE-07 | Un tiempo individual entra en el top 10. | Se muestra la tabla con su posición resaltada; se guarda, se mantiene tras recargar la página y la lista nunca supera diez entradas. |
+| ACE-07 | Un tiempo individual entra en el top 10. | Se muestra la tabla con su posición resaltada; se ve desde otro navegador o equipo y la lista nunca supera diez entradas. |
+| ACE-09 | Se juega sin conexión. | La carrera funciona; el top 10 y el resultado muestran el error de CLA-04. |
 
 ## 12. Fuera de alcance
 
-Sonido, animaciones elaboradas, juego en red, mandos o controles táctiles, accesibilidad avanzada, límite de tiempo, pausa, curvas o rampas en la pista, desbloqueos y clasificación compartida entre equipos.
+Sonido, animaciones elaboradas, juego en red, mandos o controles táctiles, accesibilidad avanzada, límite de tiempo, pausa, curvas o rampas en la pista, desbloqueos y validación de los tiempos en el servidor.

@@ -24,12 +24,13 @@ Planificación de alto nivel para construir el juego definido en [spec.md](./spe
 | M10 | Presentación visual | Reemplazar la representación provisional por el diseño de Figma en todas las pantallas. | `public/assets/`, `src/render/` | VIS-01 a VIS-09 | M8 |
 | M9 | Ajuste y verificación | Ajustar valores para un descenso de ~1 minuto y repasar todos los criterios de aceptación. | `src/config.js` | PIS-01, ACE-01 a ACE-07 | M10 |
 | M11 | Mejoras de control y pantalla | Flechas en modo individual, acelerador en lugar de freno, pantalla completa escalada y top 10 resaltado al terminar. | `src/game/Rider.js`, `src/scenes/RaceScene.js`, `src/scenes/SetupScene.js`, `src/scenes/TopScene.js`, `src/main.js`, `index.html`, `src/config.js` | MOV-01 a MOV-03, CLA-03, sección 9, ARQ-11, ACE-05, ACE-07, ACE-08 | M9 |
+| M12 | Top 10 compartido | Guardar y leer el top 10 en Supabase para que sea único entre quienes juegan en Internet. | `supabase/schema.sql`, `src/game/leaderboard.js`, `src/scenes/TopScene.js`, `src/scenes/RaceScene.js`, `src/scenes/ResultScene.js`, `src/config.js` | CLA-01 a CLA-04, ARQ-07, ARQ-09, ACE-07, ACE-09 | M11 |
 
 ## 3. Orden e hitos
 
 ```
 M1 → M2 → M3 → M4 → M5 ─┬→ M6 ─┐
-                        └→ M7 ─┴→ M8 → M10 → M9 → M11
+                        └→ M7 ─┴→ M8 → M10 → M9 → M11 → M12
 ```
 
 | Hito | Tras | Resultado demostrable |
@@ -41,6 +42,7 @@ M1 → M2 → M3 → M4 → M5 ─┬→ M6 ─┐
 | H5 | M10 | Juego con el aspecto definitivo del diseño. |
 | H6 | M9 | Juego completo, ajustado y verificado. |
 | H7 | M11 | Se acelera con `↓`/`S` y se juega en pantalla completa. |
+| H8 | M12 | Dos personas en equipos distintos ven el mismo top 10. |
 
 ## 4. Riesgos
 
@@ -49,3 +51,4 @@ M1 → M2 → M3 → M4 → M5 ─┬→ M6 ─┐
 | El teclado del aula no registra varias teclas simultáneas. | Probar en M7 en el equipo de la demo; cambiar teclas en `config.js` si hace falta. |
 | La pantalla dividida complica la escena de carrera. | Usar un solo mundo con dos cámaras (architec.md, sección 4). |
 | El ajuste de velocidades consume demasiado tiempo. | Fijar valores razonables en M3 y ajustar solo en M9. |
+| Sin Internet en el aula, el top 10 no funciona. | Se juega igual; el top 10 muestra el error (CLA-04). |

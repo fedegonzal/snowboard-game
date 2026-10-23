@@ -39,10 +39,15 @@ src/game/        Reglas del juego (sin dependencias de Phaser)
 src/render/      Dibujo de la pista, el jugador, el HUD, la interfaz y los sonidos
 src/scenes/      Escenas de Phaser: menú, preparación, carrera, resultado y top 10
 src/config.js    Valores ajustables: velocidades, tiempos, tablas, colores y teclas
+supabase/        Esquema de la tabla del top 10
 tools/           Generador de los efectos de sonido
 ```
 
 Los sonidos se sintetizan con `python3 tools/generate-sounds.py` (solo biblioteca estándar).
+
+## Top 10 compartido
+
+El top 10 se guarda en [Supabase](https://supabase.com). Para usar un proyecto propio: ejecutar `supabase/schema.sql` en su SQL Editor y poner la URL y la clave pública (`anon`) en `SUPABASE` de `src/config.js`. La clave pública puede estar en el código: los permisos solo dejan leer e insertar tiempos.
 
 ## Documentación
 

@@ -10,15 +10,15 @@ Criterio rector: pocos conceptos, poca configuración y código fácil de leer e
 
 | ID | Tema | Decisión | Motivo |
 | --- | --- | --- | --- |
-| ARQ-01 | Plataforma | Navegador de escritorio (Chrome o Firefox actuales), servido en localhost. Sin publicación en Internet. | Es una demo local. |
+| ARQ-01 | Plataforma | Navegador de escritorio (Chrome o Firefox actuales). Se publica en GitHub Pages con un workflow de GitHub Actions que compila con `--base=./`; también se puede servir en localhost. | Cualquiera puede jugar desde un enlace, sin instalar nada. |
 | ARQ-02 | Lenguaje | JavaScript con módulos ES, sin TypeScript. | Menos conceptos que explicar. |
 | ARQ-03 | Motor | Phaser 3, instalado con npm. | Resuelve escenas, entrada de teclado, colisiones simples y cámaras múltiples para la pantalla dividida. |
 | ARQ-04 | Servidor y build | Vite, sin framework de interfaz. | `npm run dev` levanta localhost; mínima configuración. |
 | ARQ-05 | Interfaz | Menús, HUD y textos dibujados con Phaser, con la tipografía Fredoka. Sin HTML/CSS adicional salvo la página base. | Un solo modelo de interfaz. |
 | ARQ-06 | Gráficos | Ilustraciones SVG exportadas del diseño de Figma en `public/assets/`; el resto (pista, bordes, botones) se dibuja con formas de Phaser. Los colores del jugador se aplican reemplazando colores en el SVG al cargarlo. Sin sonido. | Mantiene el juego fiel al diseño con pocos archivos. |
-| ARQ-07 | Persistencia | `localStorage`, una clave con el top 10 en JSON. | Sin servidor ni base de datos. Los récords quedan ligados al navegador y al puerto. |
+| ARQ-07 | Persistencia | Tabla `scores` en Supabase (Postgres), accedida con `fetch` a su API REST y la clave pública, sin SDK. Se guardan todos los tiempos; el top 10 es la consulta ordenada por tiempo y antigüedad. Los permisos solo dejan leer e insertar nombre y tiempo. El esquema está en `supabase/schema.sql`; la URL y la clave, en `config.js`. | Un único top 10 compartido entre quienes juegan en Internet, sin servidor propio. Sin validación en el servidor: quien lea el código puede enviar tiempos falsos, aceptable para la demo. |
 | ARQ-08 | Controles | Solo teclado, según MOV-02. Probar en el equipo de la demo que las pulsaciones simultáneas funcionan. | Teclado compartido entre dos personas. |
-| ARQ-09 | Sin conexión | Todas las dependencias se instalan localmente, incluida la fuente (paquete `@fontsource/fredoka`); no se cargan recursos remotos. | La demo no depende de Internet en el aula. |
+| ARQ-09 | Conexión | Todas las dependencias se instalan localmente, incluida la fuente (paquete `@fontsource/fredoka`). Solo el top 10 usa Internet; sin conexión se juega igual y el top 10 muestra un error, sin copia local. | Un solo top 10, sin dos fuentes de verdad. |
 | ARQ-11 | Escalado | Escala `FIT` de Phaser centrada: el lienzo de 960×600 se escala a la ventana conservando la proporción. La pantalla completa usa la API del navegador a través de `scale.toggleFullscreen()`, con un único manejador de teclado en `main.js`. | Pantalla completa sin redibujar ni cambiar coordenadas. |
 | ARQ-10 | Pruebas | Verificación manual con los criterios de aceptación de la especificación. Sin framework de tests. | Suficiente para el alcance de la demo. |
 
@@ -28,6 +28,7 @@ Criterio rector: pocos conceptos, poca configuración y código fácil de leer e
 index.html
 package.json
 public/assets/       Ilustraciones SVG exportadas de Figma
+supabase/schema.sql  Tabla y permisos del top 10
 src/
   main.js            Configuración de Phaser, escalado, pantalla completa y lista de escenas
   config.js          Constantes: velocidades, tiempos, tablas, colores, teclas
@@ -40,7 +41,7 @@ src/
   game/
     Rider.js         Estado y movimiento de un participante
     track.js         Generación de tramos y obstáculos a partir de una semilla
-    leaderboard.js   Lectura y escritura del top 10 en localStorage
+    leaderboard.js   Lectura y escritura del top 10 en Supabase
   render/
     theme.js         Colores y estilos de texto
     assets.js        Carga de SVG y texturas del jugador por color
@@ -66,7 +67,7 @@ npm install
 npm run dev
 ```
 
-Abrir la dirección local que indique Vite.
+Abrir la dirección local que indique Vite. Cada push a `main` publica el juego en GitHub Pages.
 
 ## 6. Referencias
 
