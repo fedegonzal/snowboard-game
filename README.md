@@ -14,7 +14,7 @@ Juego de carreras de snowboard en 2D para el navegador, para uno o dos jugadores
 
 Si juega una sola persona, usa las flechas. Mientras se mantiene el acelerador se gana velocidad, hasta tres veces la base del tramo; al soltarlo se frena hasta detenerse en dos segundos.
 
-En el celular se juega en vertical y con los dos pulgares: el dedo apoyado en la mitad izquierda maneja un joystick para moverse a los costados, y en la mitad derecha están los botones «Acelerar» (mantener) y «Saltar» (tocar). Los menús se manejan tocando.
+En el celular se juega en vertical y con los dos pulgares: el joystick izquierdo mueve a los costados, y el derecho acelera hacia abajo (mantener) y salta hacia arriba. Cada joystick aparece donde se apoya el dedo en su mitad de la pantalla. Los menús se manejan tocando.
 
 En los menús se navega con las flechas y se acepta con `Enter`. `Esc` vuelve al menú. `F` activa o desactiva la pantalla completa (salvo en la preparación).
 

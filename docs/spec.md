@@ -34,7 +34,7 @@ Las decisiones técnicas están en [architec.md](./architec.md).
 | MOV-02 | Teclas: persona 1 usa `A`/`D` (lateral), `S` (acelerar), `W` (saltar). Persona 2 usa las flechas `←`/`→`, `↓` y `↑`. En modo individual se usan las flechas. |
 | MOV-03 | Mientras se mantiene el acelerador, la velocidad de descenso crece de forma lineal hasta un máximo de tres veces la velocidad base del tramo actual. Al soltarlo, baja de forma lineal hasta detenerse en dos segundos. Mientras se mueve lateralmente, el descenso se reduce a un 80 %. Tras una caída se parte de velocidad cero. |
 | MOV-04 | El salto se puede usar en cualquier momento y dura 0,7 segundos; durante el salto se ignoran los obstáculos bajos (montículos). |
-| MOV-05 | Controles táctiles: debajo de la vista de la pista hay un panel. Un dedo apoyado en la mitad izquierda de la pantalla hace aparecer un joystick que mueve a izquierda o derecha. En la mitad derecha, el toque va al botón más cercano: «Acelerar» (mientras se mantiene) o «Saltar» (al tocarlo). Se pueden usar a la vez. |
+| MOV-05 | Controles táctiles: debajo de la vista de la pista hay un panel. Un dedo apoyado en cada mitad de la pantalla hace aparecer un joystick. El izquierdo mueve a izquierda o derecha. El derecho acelera mientras se mantiene hacia abajo y salta al empujarlo hacia arriba, igual que `↓` y `↑`. Se pueden usar a la vez. El movimiento lateral es un 25 % más lento que en la computadora, porque la pista ocupa todo el ancho de la pantalla. |
 
 ## 5. Obstáculos y caídas
 

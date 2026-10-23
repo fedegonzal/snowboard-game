@@ -132,7 +132,8 @@ Las tareas visuales de M2 a M8 se resolvieron primero de forma provisional y se 
 
 - [x] Actualizar necesidades, especificación, arquitectura, plan y README.
 - [x] `config.js`: detectar el celular y usar un lienzo vertical con la vista de carrera y el panel táctil.
-- [x] `ui/touch.js`: joystick flotante en la mitad izquierda y botones «Acelerar» y «Saltar» en la derecha, con varios dedos a la vez.
+- [x] `ui/touch.js`: un joystick flotante por mitad de la pantalla, el izquierdo lateral y el derecho para acelerar (abajo) y saltar (arriba), usables a la vez.
+- [x] Reducir la velocidad lateral en el celular.
 - [x] `RaceScene`: leer la entrada del teclado o de los controles táctiles con la misma forma.
 - [x] Hacer que los botones de menú y los selectores se puedan tocar; pedir el nombre con el teclado del sistema.
 - [x] Menú con «Jugar» y «Top 10», y preparación con «Correr» y «Volver» en el celular; centrar las pantallas verticalmente.

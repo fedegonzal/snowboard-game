@@ -18,4 +18,4 @@ Queremos que el personaje se pueda personalizar antes de la carrera: casco, camp
 - La flecha hacia abajo (y la `S`) deja de frenar y pasa a acelerar: mientras se mantiene se va cada vez más rápido, hasta tres veces la velocidad base que marca el color de la pista. Al soltarla se frena hasta detenerse en dos segundos.
 - Se puede poner el juego en pantalla completa, escalando la imagen.
 - El juego se publica en Internet y el top 10 es compartido: quienes juegan desde distintos lugares compiten en una única tabla.
-- Se puede jugar desde el celular, con la pantalla vertical y una sola persona. Se maneja con los dos pulgares: un joystick para moverse a los costados y botones para acelerar y saltar.
+- Se puede jugar desde el celular, con la pantalla vertical y una sola persona. Se maneja con los dos pulgares: un joystick para moverse a los costados y otro para acelerar y saltar. El movimiento lateral es algo más lento que en la computadora.

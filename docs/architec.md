@@ -53,7 +53,7 @@ src/
     ui.js            Botones, selectores, barras y teclas para los menús
   ui/
     menu.js          Lista de botones navegable con teclado o toque
-    touch.js         Joystick y botones táctiles de la carrera en el celular
+    touch.js         Joysticks táctiles de la carrera en el celular
     sounds.js        Carga y reproducción de los efectos de sonido
 ```
 
