@@ -13,6 +13,7 @@ export class Rider {
     this.y = track.startY;
     this.state = 'riding'; // riding | fallen | finished
     this.speed = 0;
+    this.stopRate = null; // desaceleración fijada al soltar el acelerador
     this.section = 0;
     this.jumpLeft = 0;
     this.fallLeft = 0;
@@ -33,7 +34,7 @@ export class Rider {
     return this.state === 'finished';
   }
 
-  // dt en segundos; input: { left, right, brake, jump }; raceMs: tiempo de carrera actual.
+  // dt en segundos; input: { left, right, accelerate, jump }; raceMs: tiempo de carrera actual.
   update(dt, input, track, raceMs) {
     if (this.state === 'finished') return;
 
@@ -48,12 +49,16 @@ export class Rider {
 
     this.section = sectionIndexAt(track, this.y);
     const dir = (input.right ? 1 : 0) - (input.left ? 1 : 0);
-    let speed = track.sections[this.section].speed * this.board.speed;
-    if (dir !== 0) speed *= RIDER.turnFactor;
-    if (input.brake) speed *= RIDER.brakeFactor;
-    this.speed = speed;
+    const max = track.sections[this.section].speed * this.board.speed * RIDER.maxBoost;
+    if (input.accelerate) {
+      this.stopRate = null;
+      this.speed = Math.min(max, this.speed + (max / RIDER.accelTime) * dt);
+    } else {
+      this.stopRate ??= this.speed / RIDER.stopTime;
+      this.speed = Math.max(0, this.speed - this.stopRate * dt);
+    }
 
-    this.y += speed * dt;
+    this.y += this.speed * (dir !== 0 ? RIDER.turnFactor : 1) * dt;
     this.x += dir * RIDER.lateralSpeed * this.board.lateral * dt;
 
     this.checkEdges(track);

@@ -86,7 +86,7 @@ export class RaceScene extends Phaser.Scene {
     return {
       left: keys.left.isDown,
       right: keys.right.isDown,
-      brake: keys.brake.isDown,
+      accelerate: keys.accelerate.isDown,
       jump: Phaser.Input.Keyboard.JustDown(keys.jump),
     };
   }

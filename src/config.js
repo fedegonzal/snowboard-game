@@ -30,7 +30,9 @@ export const RIDER = {
   size: 28,            // lado del rectángulo de colisión
   lateralSpeed: 220,   // velocidad lateral base
   turnFactor: 0.8,     // velocidad de bajada mientras se mueve lateralmente
-  brakeFactor: 0.4,    // velocidad de bajada mientras se frena
+  maxBoost: 3,         // velocidad máxima con el acelerador, en veces la del tramo
+  accelTime: 6,        // tiempo de 0 a la velocidad máxima
+  stopTime: 2,         // tiempo hasta detenerse al soltar el acelerador
   jumpDuration: 0.5,
   fallDuration: 2,
   immunityDuration: 1,
@@ -52,8 +54,8 @@ export const COLORS = [
 ];
 
 export const KEYS = [
-  { left: 'A', right: 'D', brake: 'S', jump: 'W' },
-  { left: 'LEFT', right: 'RIGHT', brake: 'DOWN', jump: 'UP' },
+  { left: 'A', right: 'D', accelerate: 'S', jump: 'W' },
+  { left: 'LEFT', right: 'RIGHT', accelerate: 'DOWN', jump: 'UP' },
 ];
 
 export const RACE = {
