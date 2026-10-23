@@ -2,6 +2,8 @@
 
 Juego de carreras de snowboard en 2D para el navegador, para uno o dos jugadores en el mismo teclado. Es una demo para una clase universitaria sobre cómo construir un proyecto con ayuda de IA.
 
+Jugar en línea: https://fedegonzal.github.io/snowboard-game
+
 ## Requisitos
 
 - Node.js 20 o superior.
