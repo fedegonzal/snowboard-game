@@ -1,11 +1,19 @@
 import { button } from '../render/ui.js';
 
-// Lista de botones navegable con ↑/↓ y Enter. options: [{ label, action }].
+// Lista de botones navegable con ↑/↓ y Enter, o tocando un botón. options: [{ label, action }].
 export function createMenu(scene, x, y, options, { width = 280, gap = 14 } = {}) {
   let selected = 0;
   const buttons = options.map((o, i) => button(scene, x, y + i * (52 + gap), width, o.label));
 
   const refresh = () => buttons.forEach((b, i) => b.setSelected(i === selected));
+  const confirm = () => {
+    scene.sound.play('confirm');
+    options[selected].action();
+  };
+  buttons.forEach((b, i) => b.on('pointerup', () => {
+    selected = i;
+    confirm();
+  }));
 
   const keyboard = scene.input.keyboard;
   keyboard.on('keydown-UP', () => {
@@ -18,10 +26,7 @@ export function createMenu(scene, x, y, options, { width = 280, gap = 14 } = {})
     refresh();
     scene.sound.play('select');
   });
-  keyboard.on('keydown-ENTER', () => {
-    scene.sound.play('confirm');
-    options[selected].action();
-  });
+  keyboard.on('keydown-ENTER', confirm);
 
   refresh();
   return buttons;

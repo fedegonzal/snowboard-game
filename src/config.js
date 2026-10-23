@@ -1,6 +1,17 @@
 // Todos los valores ajustables del juego. Distancias en píxeles, tiempos en segundos.
 
-export const SCREEN = { width: 960, height: 600 };
+// Celular o tablet: pantalla vertical, una sola persona y controles táctiles.
+export const MOBILE = window.matchMedia('(pointer: coarse)').matches;
+
+// En el celular el alto sigue la proporción de la pantalla (al menos 16:9) para no dejar franjas.
+// raceHeight: alto de la vista de carrera; debajo van los controles táctiles (240 px).
+const MOBILE_HEIGHT = Math.max(960, Math.round((540 * window.innerHeight) / window.innerWidth));
+export const SCREEN = MOBILE
+  ? { width: 540, height: MOBILE_HEIGHT, raceHeight: MOBILE_HEIGHT - 240 }
+  : { width: 960, height: 600, raceHeight: 600 };
+
+// Alto para el que están diseñados el menú, la preparación, el resultado y el top 10.
+export const LAYOUT_HEIGHT = 600;
 
 export const TRACK = {
   width: 400,           // ancho de la pista

@@ -1,5 +1,5 @@
 import Phaser from 'phaser';
-import { SCREEN, KEYS, RACE } from '../config.js';
+import { SCREEN, MOBILE, KEYS, RACE } from '../config.js';
 import { generateTrack } from '../game/track.js';
 import { Rider } from '../game/Rider.js';
 import { toTenths, formatTime } from '../game/time.js';
@@ -9,6 +9,7 @@ import { drawTrack } from '../render/trackView.js';
 import { createRiderView } from '../render/riderView.js';
 import { createHud } from '../render/hud.js';
 import { createRiderSounds } from '../render/sounds.js';
+import { createTouchControls } from '../ui/touch.js';
 
 const MAX_STEP_MS = 100; // evita saltos grandes si el navegador se detiene un momento
 const GO_MESSAGE_MS = 700;
@@ -33,9 +34,9 @@ export class RaceScene extends Phaser.Scene {
     this.riderViews = this.riders.map((r) => createRiderView(this, r));
     this.riderSounds = this.riders.map((r) => createRiderSounds(this, r));
     this.views = this.createViews();
-    // En modo individual se juega con las flechas.
+    // En el celular se juega con los controles táctiles; en modo individual, con las flechas.
     const keySets = this.mode === 1 ? [KEYS[1]] : KEYS;
-    this.inputs = keySets.map((keys) => this.input.keyboard.addKeys(keys));
+    this.controls = MOBILE ? [createTouchControls(this)] : keySets.map((keys) => this.keyboardControls(keys));
 
     this.countdownMs = RACE.countdown * 1000;
     this.raceMs = 0;
@@ -57,7 +58,7 @@ export class RaceScene extends Phaser.Scene {
       const cam = i === 0 ? this.cameras.main : this.cameras.add();
       cam.setViewport(i * width, 0, width, SCREEN.height);
       cam.setBackgroundColor(THEME.background);
-      const hud = createHud(this, width, SCREEN.height, split ? { name: rider.name, jacket: rider.jacket } : {});
+      const hud = createHud(this, width, SCREEN.raceHeight, split ? { name: rider.name, jacket: rider.jacket } : {});
       if (split) {
         // Línea divisoria: media en cada vista, sobre el borde compartido.
         const line = this.add.rectangle(i === 0 ? width - 3 : 0, 0, 3, SCREEN.height, THEME.ink).setOrigin(0);
@@ -78,19 +79,21 @@ export class RaceScene extends Phaser.Scene {
     } else if (!this.ended) {
       const step = Math.min(delta, MAX_STEP_MS);
       this.raceMs += step;
-      this.riders.forEach((r, i) => r.update(step / 1000, this.readInput(i), this.track, this.raceMs));
+      this.riders.forEach((r, i) => r.update(step / 1000, this.controls[i].read(), this.track, this.raceMs));
       this.checkFinish();
     }
     this.render(time);
   }
 
-  readInput(i) {
-    const keys = this.inputs[i];
+  keyboardControls(names) {
+    const keys = this.input.keyboard.addKeys(names);
     return {
-      left: keys.left.isDown,
-      right: keys.right.isDown,
-      accelerate: keys.accelerate.isDown,
-      jump: Phaser.Input.Keyboard.JustDown(keys.jump),
+      read: () => ({
+        left: keys.left.isDown,
+        right: keys.right.isDown,
+        accelerate: keys.accelerate.isDown,
+        jump: Phaser.Input.Keyboard.JustDown(keys.jump),
+      }),
     };
   }
 
@@ -132,7 +135,7 @@ export class RaceScene extends Phaser.Scene {
       this.riderSounds[i].update();
       const { cam, hud } = this.views[i];
       cam.scrollX = this.track.width / 2 - cam.width / 2;
-      cam.scrollY = rider.y - cam.height * 0.3;
+      cam.scrollY = rider.y - SCREEN.raceHeight * 0.3;
       const section = this.track.sections[rider.section];
       hud.update({
         sectionName: section.name,

@@ -1,9 +1,9 @@
 import Phaser from 'phaser';
-import { SCREEN, TOP, COLORS } from '../config.js';
+import { SCREEN, LAYOUT_HEIGHT, TOP, COLORS } from '../config.js';
 import { loadTop } from '../game/leaderboard.js';
 import { formatTime } from '../game/time.js';
 import { THEME, outlinedStyle, textStyle } from '../render/theme.js';
-import { card } from '../render/ui.js';
+import { card, centerContent } from '../render/ui.js';
 import { createMenu } from '../ui/menu.js';
 
 export class TopScene extends Phaser.Scene {
@@ -13,6 +13,7 @@ export class TopScene extends Phaser.Scene {
 
   // result: datos para ResultScene cuando se llega desde una carrera que entró al top 10.
   create({ result }) {
+    centerContent(this);
     const cx = SCREEN.width / 2;
     this.add.text(cx, 50, 'Top 10', outlinedStyle(48)).setOrigin(0.5);
 
@@ -36,7 +37,7 @@ export class TopScene extends Phaser.Scene {
     const next = result
       ? { label: 'Continuar', action: () => this.scene.start('ResultScene', result) }
       : { label: 'Volver', action: () => this.scene.start('MenuScene') };
-    createMenu(this, cx - 120, SCREEN.height - 76, [next], { width: 240 });
+    createMenu(this, cx - 120, LAYOUT_HEIGHT - 76, [next], { width: 240 });
     this.input.keyboard.on('keydown-ESC', () => this.scene.start('MenuScene'));
   }
 

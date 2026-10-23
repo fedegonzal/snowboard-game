@@ -1,3 +1,5 @@
+import Phaser from 'phaser';
+import { SCREEN, LAYOUT_HEIGHT } from '../config.js';
 import { THEME, textStyle } from './theme.js';
 
 // Piezas de interfaz del diseño: etiquetas, botones, selectores, barras y teclas.
@@ -7,6 +9,16 @@ function roundedBox(g, w, h, { fill = THEME.white, fillAlpha = 1, stroke = THEME
   g.clear();
   g.fillStyle(fill, fillAlpha).fillRoundedRect(0, 0, w, h, radius);
   if (strokeWidth > 0) g.lineStyle(strokeWidth, stroke).strokeRoundedRect(0, 0, w, h, radius);
+}
+
+// Hace que un Container de w×h responda al toque o al clic.
+function tappable(c, w, h) {
+  return c.setInteractive({ hitArea: new Phaser.Geom.Rectangle(0, 0, w, h), hitAreaCallback: Phaser.Geom.Rectangle.Contains, useHandCursor: true });
+}
+
+// Centra verticalmente una pantalla diseñada para LAYOUT_HEIGHT (en el celular sobra alto).
+export function centerContent(scene) {
+  scene.cameras.main.setScroll(0, (LAYOUT_HEIGHT - SCREEN.height) / 2);
 }
 
 // Flecha < o > dibujada (Fredoka no incluye ◀ ▶).
@@ -56,7 +68,7 @@ export function button(scene, x, y, w, label) {
     return c;
   };
   c.setSelected(false);
-  return c;
+  return tappable(c, w, h);
 }
 
 // Selector de la preparación: etiqueta, muestra de color opcional, valor y flechas.
@@ -82,7 +94,7 @@ export function selector(scene, x, y, w = 220) {
     c.add(arrows);
     return c;
   };
-  return c;
+  return tappable(c, w, h);
 }
 
 // Barra de atributo de tabla. level: valor del multiplicador (0,6 a 1,3).

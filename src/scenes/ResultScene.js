@@ -2,7 +2,7 @@ import Phaser from 'phaser';
 import { SCREEN, COLORS } from '../config.js';
 import { formatTime } from '../game/time.js';
 import { outlinedStyle, textStyle } from '../render/theme.js';
-import { card, pill } from '../render/ui.js';
+import { card, pill, centerContent } from '../render/ui.js';
 import { createMenu } from '../ui/menu.js';
 
 // data: { mode, players, results: [{ name, tenths }], topPosition, winner: 0 | 1 | 'tie' | null, saveError }
@@ -12,6 +12,7 @@ export class ResultScene extends Phaser.Scene {
   }
 
   create(data) {
+    centerContent(this);
     const cx = SCREEN.width / 2;
     this.add.text(cx, 56, this.title(data), outlinedStyle(52)).setOrigin(0.5);
 
