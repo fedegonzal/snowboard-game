@@ -41,6 +41,7 @@ export class RaceScene extends Phaser.Scene {
     this.raceMs = 0;
     this.firstFinisher = null;
     this.ended = false;
+    this.saving = false;
     for (let i = 0; i <= RACE.countdown; i++) {
       this.time.delayedCall(i * 1000, () => this.sound.play(i < RACE.countdown ? 'beep' : 'go'));
     }
@@ -101,19 +102,27 @@ export class RaceScene extends Phaser.Scene {
     }
   }
 
-  endRace() {
+  async endRace() {
     const results = this.riders.map((r) => ({ name: r.name, tenths: toTenths(r.finishMs) }));
-    let topPosition = null;
-    let winner = null;
-    if (this.mode === 1) {
-      topPosition = addTime(results[0].name, results[0].tenths);
-    } else {
+    const result = { mode: this.mode, players: this.playerConfigs, results, topPosition: null, winner: null, saveError: false };
+    if (this.mode === 2) {
       const [a, b] = results;
-      winner = a.tenths === b.tenths ? 'tie' : a.tenths < b.tenths ? 0 : 1;
+      result.winner = a.tenths === b.tenths ? 'tie' : a.tenths < b.tenths ? 0 : 1;
+      this.scene.start('ResultScene', result);
+      return;
     }
-    const result = { mode: this.mode, players: this.playerConfigs, results, topPosition, winner };
+    this.saving = true;
+    let left = false;
+    this.events.once('shutdown', () => (left = true));
+    try {
+      result.topPosition = await addTime(results[0].name, results[0].tenths);
+    } catch (err) {
+      console.error(err);
+      result.saveError = true;
+    }
+    if (left) return; // se volvió al menú mientras se guardaba
     // Si entró al top 10, se muestra la tabla antes del resultado.
-    if (topPosition) this.scene.start('TopScene', { result });
+    if (result.topPosition) this.scene.start('TopScene', { result });
     else this.scene.start('ResultScene', result);
   }
 
@@ -137,6 +146,7 @@ export class RaceScene extends Phaser.Scene {
   messageFor(rider) {
     if (this.countdownMs > 0) return String(Math.ceil(this.countdownMs / 1000));
     if (this.raceMs < GO_MESSAGE_MS) return '¡Ya!';
+    if (this.saving) return 'Guardando…';
     if (rider.finished) return `¡Llegada!\n${formatTime(toTenths(rider.finishMs))}`;
     if (rider.state === 'fallen') return '¡Caída!';
     if (this.firstFinisher) return `${this.firstFinisher.name}\nllegó primero`;

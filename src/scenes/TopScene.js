@@ -18,7 +18,29 @@ export class TopScene extends Phaser.Scene {
 
     const w = 420, x = cx - w / 2, y = 96, rowH = 34;
     card(this, x, y, w, TOP.size * rowH + 28);
-    const entries = loadTop();
+    const status = this.add.text(cx, y + 30, 'Cargando…', textStyle(20, { weight: 500, color: THEME.muted })).setOrigin(0.5, 0);
+    let left = false;
+    this.events.once('shutdown', () => (left = true));
+    loadTop().then(
+      (entries) => {
+        if (left) return;
+        status.destroy();
+        this.drawRows(entries, result, x, y, w, rowH);
+      },
+      (err) => {
+        console.error(err);
+        if (!left) status.setText('No se pudo cargar el top 10.');
+      },
+    );
+
+    const next = result
+      ? { label: 'Continuar', action: () => this.scene.start('ResultScene', result) }
+      : { label: 'Volver', action: () => this.scene.start('MenuScene') };
+    createMenu(this, cx - 120, SCREEN.height - 76, [next], { width: 240 });
+    this.input.keyboard.on('keydown-ESC', () => this.scene.start('MenuScene'));
+  }
+
+  drawRows(entries, result, x, y, w, rowH) {
     for (let i = 0; i < TOP.size; i++) {
       const e = entries[i];
       const rowY = y + 14 + i * rowH;
@@ -29,11 +51,5 @@ export class TopScene extends Phaser.Scene {
       this.add.text(x + 72, rowY, e ? e.name : '—', textStyle(20, { weight: i < 3 && e ? 700 : 500, color }));
       this.add.text(x + w - 28, rowY, e ? formatTime(e.tenths) : '', textStyle(20, { color })).setOrigin(1, 0);
     }
-
-    const next = result
-      ? { label: 'Continuar', action: () => this.scene.start('ResultScene', result) }
-      : { label: 'Volver', action: () => this.scene.start('MenuScene') };
-    createMenu(this, cx - 120, SCREEN.height - 76, [next], { width: 240 });
-    this.input.keyboard.on('keydown-ESC', () => this.scene.start('MenuScene'));
   }
 }

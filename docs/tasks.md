@@ -122,8 +122,8 @@ Las tareas visuales de M2 a M8 se resolvieron primero de forma provisional y se 
 
 - [x] Actualizar necesidades, especificación, arquitectura, plan y README.
 - [x] Escribir `supabase/schema.sql`: tabla `scores` y permisos para leer e insertar solo nombre y tiempo.
-- [ ] Crear el proyecto de Supabase, ejecutar el esquema y poner la URL y la clave pública en `config.js`.
-- [ ] En `leaderboard.js`, reemplazar `localStorage` por `fetch` a la API REST: leer los diez mejores e insertar un tiempo devolviendo su posición.
-- [ ] `TopScene`: mostrar «Cargando…» y el error si no hay conexión.
-- [ ] `RaceScene` y `ResultScene`: mostrar «Guardando…» al terminar y el error si no se pudo guardar.
+- [x] Crear el proyecto de Supabase, ejecutar el esquema y poner la URL y la clave pública en `config.js`.
+- [x] En `leaderboard.js`, reemplazar `localStorage` por `fetch` a la API REST: leer los diez mejores e insertar un tiempo devolviendo su posición.
+- [x] `TopScene`: mostrar «Cargando…» y el error si no hay conexión.
+- [x] `RaceScene` y `ResultScene`: mostrar «Guardando…» al terminar y el error si no se pudo guardar.
 - [ ] Verificar ACE-07 y ACE-09.

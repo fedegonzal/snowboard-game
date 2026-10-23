@@ -65,4 +65,10 @@ export const RACE = {
 
 export const NAME = { maxLength: 10, default: 'Jugador' };
 
-export const TOP = { size: 10, storageKey: 'snowboard.top10' };
+export const TOP = { size: 10 };
+
+// Proyecto de Supabase del top 10. La clave es pública: los permisos solo dejan leer e insertar tiempos.
+export const SUPABASE = {
+  url: 'https://gkiakrvmstnzvlrvdipw.supabase.co',
+  key: 'sb_publishable_mVdjVxNkD7gTfPzPOJk8Ug_w9b_qNC4',
+};

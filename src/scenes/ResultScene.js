@@ -5,7 +5,7 @@ import { outlinedStyle, textStyle } from '../render/theme.js';
 import { card, pill } from '../render/ui.js';
 import { createMenu } from '../ui/menu.js';
 
-// data: { mode, players, results: [{ name, tenths }], topPosition, winner: 0 | 1 | 'tie' | null }
+// data: { mode, players, results: [{ name, tenths }], topPosition, winner: 0 | 1 | 'tie' | null, saveError }
 export class ResultScene extends Phaser.Scene {
   constructor() {
     super('ResultScene');
@@ -46,7 +46,8 @@ export class ResultScene extends Phaser.Scene {
     return `¡Gana ${results[winner].name}!`;
   }
 
-  summary({ mode, results, topPosition, winner }) {
+  summary({ mode, results, topPosition, winner, saveError }) {
+    if (saveError) return 'No se pudo guardar el tiempo.';
     if (mode === 1) return topPosition ? `Entraste al top 10 en el puesto ${topPosition}.` : 'No entraste al top 10.';
     if (winner === 'tie') return 'Llegaron con el mismo tiempo en décimas.';
     return `${results[winner].name} cruzó primero la meta.`;
