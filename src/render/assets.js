@@ -12,7 +12,7 @@ const IMAGES = {
   trophy: { width: 140, height: 140 },
 };
 
-export const RIDER_TEXTURE_SIZE = 112;
+export const RIDER_TEXTURE_SIZE = 168;
 
 // Colores del jugador en player.svg (variante «Rojo» del componente de Figma).
 const RIDER_SVG_COLORS = { helmet: '#C4303C', body: '#EF7E87', sleeves: '#E63946', sleeveShade: '#AD2B35' };

@@ -45,12 +45,10 @@ export class SetupScene extends Phaser.Scene {
   createCard(i, x, y, w, h) {
     card(this, x, y, w, h);
     const tag = pill(this, x + 16, y + 16, '', { fillAlpha: 1, color: 0xffffff });
-    this.add.image(x + 16, y + 64, `config-${i + 1}`).setOrigin(0);
-    this.add.text(x + 16, y + h - 44, 'En la pista:', textStyle(13, { weight: 500, color: THEME.muted }));
-    const preview = this.add.image(x + 130, y + h - 38, riderTextureKey(0, 0)).setScale(0.5);
+    const preview = this.add.image(x + 100, y + 148, riderTextureKey(0, 0));
 
     const ox = x + 196, ow = w - 196 - 16;
-    const keys = this.mode === 1 ? 'Teclas: flechas y letras' : i === 0 ? 'Teclas: W A S D' : 'Teclas: flechas';
+    const keys = this.controls[i] === WASD ? 'Teclas: W A S D' : 'Teclas: flechas';
     this.add.text(ox, y + 18, keys, textStyle(13, { weight: 500, color: THEME.muted }));
     const selectors = this.rows.map((_, r) => selector(this, ox, y + 42 + r * 70, ow));
     const statsY = y + 42 + this.rows.length * 70 + 4;

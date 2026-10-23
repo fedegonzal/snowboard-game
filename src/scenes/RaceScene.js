@@ -33,7 +33,9 @@ export class RaceScene extends Phaser.Scene {
     this.riderViews = this.riders.map((r) => createRiderView(this, r));
     this.riderSounds = this.riders.map((r) => createRiderSounds(this, r));
     this.views = this.createViews();
-    this.inputs = this.riders.map((_, i) => this.input.keyboard.addKeys(KEYS[i]));
+    // En modo individual se juega con las flechas.
+    const keySets = this.mode === 1 ? [KEYS[1]] : KEYS;
+    this.inputs = keySets.map((keys) => this.input.keyboard.addKeys(keys));
 
     this.countdownMs = RACE.countdown * 1000;
     this.raceMs = 0;
