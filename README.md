@@ -24,7 +24,7 @@ Abrir la dirección local que indica Vite (por defecto `http://localhost:5173`).
 | Acelerar | `S` | `↓` |
 | Saltar | `W` | `↑` |
 
-Si juega una sola persona, usa las flechas. Mientras se mantiene el acelerador se gana velocidad, hasta cinco veces la base del tramo; al soltarlo se frena hasta detenerse en dos segundos.
+Si juega una sola persona, usa las flechas. Mientras se mantiene el acelerador se gana velocidad, hasta tres veces la base del tramo; al soltarlo se frena hasta detenerse en dos segundos.
 
 En los menús se navega con las flechas y se acepta con `Enter`. `Esc` vuelve al menú. `F` activa o desactiva la pantalla completa (salvo en la preparación).
 

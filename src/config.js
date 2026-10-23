@@ -21,7 +21,7 @@ export const SECTIONS = [
 
 // Rectángulo de colisión de cada obstáculo. low: se puede superar saltando.
 export const OBSTACLES = {
-  snowman: { w: 34, h: 30, low: true },
+  snowman: { w: 34, h: 30, low: false },
   mound: { w: 70, h: 26, low: true },
   flag: { w: 14, h: 22, low: false },
 };
@@ -33,7 +33,7 @@ export const RIDER = {
   maxBoost: 3,         // velocidad máxima con el acelerador, en veces la del tramo
   accelTime: 6,        // tiempo de 0 a la velocidad máxima
   stopTime: 2,         // tiempo hasta detenerse al soltar el acelerador
-  jumpDuration: 0.5,
+  jumpDuration: 0.7,
   fallDuration: 2,
   immunityDuration: 1,
   edgeNudge: 4,        // separación del borde al levantarse

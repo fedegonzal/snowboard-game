@@ -110,9 +110,10 @@ Las tareas visuales de M2 a M8 se resolvieron primero de forma provisional y se 
 
 - [x] Actualizar necesidades, especificación, arquitectura, plan y README con las mejoras.
 - [x] En modo individual, usar las flechas en la carrera y en la ayuda de teclas de la preparación.
-- [x] Reemplazar el freno por el acelerador: la velocidad crece de forma lineal hasta 5× la base del tramo mientras se mantiene `↓`/`S`.
+- [x] Reemplazar el freno por el acelerador: la velocidad crece de forma lineal hasta 3× la base del tramo mientras se mantiene `↓`/`S`.
 - [x] Al soltar el acelerador, frenar de forma lineal hasta detenerse en dos segundos; tras una caída partir de cero.
 - [x] Escalar el juego a la ventana con la escala `FIT` de Phaser.
 - [x] Alternar la pantalla completa con `F`, salvo en la preparación, y mostrarlo en la ayuda del menú.
 - [x] Al entrar al top 10, mostrar la tabla con la posición resaltada antes del resultado.
+- [x] Alargar el salto a 0,7 s y hacer que el muñeco de nieve no se pueda saltar.
 - [ ] Verificar ACE-05, ACE-07 y ACE-08.

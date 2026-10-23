@@ -15,5 +15,5 @@ Queremos que el personaje se pueda personalizar antes de la carrera: casco, camp
 ## Mejoras tras la primera versión
 
 - Si juega una sola persona, se usan las flechas en lugar de las letras.
-- La flecha hacia abajo (y la `S`) deja de frenar y pasa a acelerar: mientras se mantiene se va cada vez más rápido, hasta cinco veces la velocidad base que marca el color de la pista. Al soltarla se frena hasta detenerse en dos segundos.
+- La flecha hacia abajo (y la `S`) deja de frenar y pasa a acelerar: mientras se mantiene se va cada vez más rápido, hasta tres veces la velocidad base que marca el color de la pista. Al soltarla se frena hasta detenerse en dos segundos.
 - Se puede poner el juego en pantalla completa, escalando la imagen.

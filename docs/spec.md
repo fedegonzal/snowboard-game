@@ -31,14 +31,14 @@ Las decisiones técnicas están en [architec.md](./architec.md).
 | --- | --- |
 | MOV-01 | Acciones: izquierda, derecha, acelerar y saltar. No hay acción para frenar: se frena soltando el acelerador. |
 | MOV-02 | Teclas: persona 1 usa `A`/`D` (lateral), `S` (acelerar), `W` (saltar). Persona 2 usa las flechas `←`/`→`, `↓` y `↑`. En modo individual se usan las flechas. |
-| MOV-03 | Mientras se mantiene el acelerador, la velocidad de descenso crece de forma lineal hasta un máximo de cinco veces la velocidad base del tramo actual. Al soltarlo, baja de forma lineal hasta detenerse en dos segundos. Mientras se mueve lateralmente, el descenso se reduce a un 80 %. Tras una caída se parte de velocidad cero. |
-| MOV-04 | El salto se puede usar en cualquier momento y dura medio segundo; durante el salto se ignoran los obstáculos bajos (muñecos de nieve y montículos). |
+| MOV-03 | Mientras se mantiene el acelerador, la velocidad de descenso crece de forma lineal hasta un máximo de tres veces la velocidad base del tramo actual. Al soltarlo, baja de forma lineal hasta detenerse en dos segundos. Mientras se mueve lateralmente, el descenso se reduce a un 80 %. Tras una caída se parte de velocidad cero. |
+| MOV-04 | El salto se puede usar en cualquier momento y dura 0,7 segundos; durante el salto se ignoran los obstáculos bajos (montículos). |
 
 ## 5. Obstáculos y caídas
 
 | ID | Requisito |
 | --- | --- |
-| OBS-01 | Tipos de obstáculo: muñecos de nieve y montículos (se evitan saltando o esquivando) y banderines (solo se evitan esquivando). |
+| OBS-01 | Tipos de obstáculo: montículos (se evitan saltando o esquivando), y muñecos de nieve y banderines (solo se evitan esquivando). |
 | OBS-02 | Chocar con un obstáculo o con el borde provoca una caída: el personaje queda detenido dos segundos y luego continúa desde el mismo punto. No se suman penalizaciones al tiempo. |
 | OBS-03 | Tras levantarse, el personaje es inmune a caídas durante un segundo (se muestra parpadeando). |
 | OBS-04 | Los participantes no interactúan entre sí: pueden superponerse sin efecto. |
@@ -102,8 +102,8 @@ El diseño de referencia está en Figma, página «Pista – en juego» del arch
 | ACE-01 | Se inicia una carrera de dos personas. | Pantalla dividida, cuenta regresiva de tres segundos y salida simultánea. |
 | ACE-02 | Se compara la pista de ambas personas y luego se pide revancha. | Ambas tienen los mismos obstáculos; la revancha tiene una distribución distinta. |
 | ACE-03 | Un personaje choca con un obstáculo o un borde. | Queda detenido dos segundos, continúa desde el mismo punto y parpadea un segundo sin poder caer. |
-| ACE-04 | Un personaje salta sobre un muñeco de nieve o un montículo. | No cae. Un banderín sí lo hace caer aunque salte. |
-| ACE-05 | Se mantiene el acelerador y luego se suelta. | La velocidad crece hasta cinco veces la base del tramo y, al soltar, se detiene en dos segundos (MOV-03). |
+| ACE-04 | Un personaje salta sobre un montículo. | No cae. Un muñeco de nieve o un banderín sí lo hacen caer aunque salte. |
+| ACE-05 | Se mantiene el acelerador y luego se suelta. | La velocidad crece hasta tres veces la base del tramo y, al soltar, se detiene en dos segundos (MOV-03). |
 | ACE-08 | Se pulsa `F` en el menú o en la carrera. | El juego pasa a pantalla completa escalado sin deformarse; otra pulsación lo devuelve a la ventana. |
 | ACE-06 | Ambas personas llegan con el mismo tiempo en décimas. | Se declara empate. |
 | ACE-07 | Un tiempo individual entra en el top 10. | Se muestra la tabla con su posición resaltada; se guarda, se mantiene tras recargar la página y la lista nunca supera diez entradas. |
