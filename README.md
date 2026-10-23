@@ -2,6 +2,20 @@
 
 Juego de carreras de snowboard en 2D para el navegador, para uno o dos jugadores en el mismo teclado. Es una demo para una clase universitaria sobre cómo construir un proyecto con ayuda de IA.
 
+![Carrera de dos jugadores en pantalla dividida](docs/captura.png)
+
+## Cómo jugar
+
+| Acción | Jugador 1 | Jugador 2 |
+| --- | --- | --- |
+| Moverse | `A` / `D` | `←` / `→` |
+| Acelerar | `S` | `↓` |
+| Saltar | `W` | `↑` |
+
+Si juega una sola persona, usa las flechas. Mientras se mantiene el acelerador se gana velocidad, hasta tres veces la base del tramo; al soltarlo se frena hasta detenerse en dos segundos.
+
+En los menús se navega con las flechas y se acepta con `Enter`. `Esc` vuelve al menú. `F` activa o desactiva la pantalla completa (salvo en la preparación).
+
 Jugar en línea: https://fedegonzal.github.io/snowboard-game
 
 ## Requisitos
@@ -17,18 +31,6 @@ npm run dev
 ```
 
 Abrir la dirección local que indica Vite (por defecto `http://localhost:5173`). Para generar una versión estática: `npm run build`, que la deja en `dist/`.
-
-## Controles
-
-| Acción | Jugador 1 | Jugador 2 |
-| --- | --- | --- |
-| Moverse | `A` / `D` | `←` / `→` |
-| Acelerar | `S` | `↓` |
-| Saltar | `W` | `↑` |
-
-Si juega una sola persona, usa las flechas. Mientras se mantiene el acelerador se gana velocidad, hasta tres veces la base del tramo; al soltarlo se frena hasta detenerse en dos segundos.
-
-En los menús se navega con las flechas y se acepta con `Enter`. `Esc` vuelve al menú. `F` activa o desactiva la pantalla completa (salvo en la preparación).
 
 ## Estructura
 
