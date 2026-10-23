@@ -25,12 +25,13 @@ Planificación de alto nivel para construir el juego definido en [spec.md](./spe
 | M9 | Ajuste y verificación | Ajustar valores para un descenso de ~1 minuto y repasar todos los criterios de aceptación. | `src/config.js` | PIS-01, ACE-01 a ACE-07 | M10 |
 | M11 | Mejoras de control y pantalla | Flechas en modo individual, acelerador en lugar de freno, pantalla completa escalada y top 10 resaltado al terminar. | `src/game/Rider.js`, `src/scenes/RaceScene.js`, `src/scenes/SetupScene.js`, `src/scenes/TopScene.js`, `src/main.js`, `index.html`, `src/config.js` | MOV-01 a MOV-03, CLA-03, sección 9, ARQ-11, ACE-05, ACE-07, ACE-08 | M9 |
 | M12 | Top 10 compartido | Guardar y leer el top 10 en Supabase para que sea único entre quienes juegan en Internet. | `supabase/schema.sql`, `src/game/leaderboard.js`, `src/scenes/TopScene.js`, `src/scenes/RaceScene.js`, `src/scenes/ResultScene.js`, `src/config.js` | CLA-01 a CLA-04, ARQ-07, ARQ-09, ACE-07, ACE-09 | M11 |
+| M13 | Versión para celular | Pantalla vertical, una persona, controles táctiles en la carrera y menús que se pueden tocar. | `src/ui/touch.js`, `src/ui/menu.js`, `src/render/ui.js`, `src/scenes/`, `src/config.js`, `index.html` | OBJ-04, MOV-05, sección 9, ARQ-01, ARQ-08, ARQ-11, ACE-10 | M12 |
 
 ## 3. Orden e hitos
 
 ```
 M1 → M2 → M3 → M4 → M5 ─┬→ M6 ─┐
-                        └→ M7 ─┴→ M8 → M10 → M9 → M11 → M12
+                        └→ M7 ─┴→ M8 → M10 → M9 → M11 → M12 → M13
 ```
 
 | Hito | Tras | Resultado demostrable |
@@ -43,6 +44,7 @@ M1 → M2 → M3 → M4 → M5 ─┬→ M6 ─┐
 | H6 | M9 | Juego completo, ajustado y verificado. |
 | H7 | M11 | Se acelera con `↓`/`S` y se juega en pantalla completa. |
 | H8 | M12 | Dos personas en equipos distintos ven el mismo top 10. |
+| H9 | M13 | Se juega una carrera completa desde un celular en vertical. |
 
 ## 4. Riesgos
 

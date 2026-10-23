@@ -15,6 +15,7 @@ Las decisiones técnicas están en [architec.md](./architec.md).
 | OBJ-01 | Juego de carreras de snowboard en 2D, con vista desde arriba y descenso vertical: el personaje baja por la pantalla y la pista se desplaza. Personajes y objetos se dibujan como ilustraciones planas (ver sección 10). |
 | OBJ-02 | Modo individual: completar el descenso en el menor tiempo posible y entrar en el top 10. |
 | OBJ-03 | Modo de dos personas: en el mismo teclado, con pantalla dividida en dos mitades verticales (izquierda y derecha). Gana quien cruce primero la meta; igualdad a décimas de segundo es empate. |
+| OBJ-04 | En el celular (pantalla táctil) se juega solo el modo individual, con la pantalla vertical y controles táctiles. |
 
 ## 3. Pista
 
@@ -33,6 +34,7 @@ Las decisiones técnicas están en [architec.md](./architec.md).
 | MOV-02 | Teclas: persona 1 usa `A`/`D` (lateral), `S` (acelerar), `W` (saltar). Persona 2 usa las flechas `←`/`→`, `↓` y `↑`. En modo individual se usan las flechas. |
 | MOV-03 | Mientras se mantiene el acelerador, la velocidad de descenso crece de forma lineal hasta un máximo de tres veces la velocidad base del tramo actual. Al soltarlo, baja de forma lineal hasta detenerse en dos segundos. Mientras se mueve lateralmente, el descenso se reduce a un 80 %. Tras una caída se parte de velocidad cero. |
 | MOV-04 | El salto se puede usar en cualquier momento y dura 0,7 segundos; durante el salto se ignoran los obstáculos bajos (montículos). |
+| MOV-05 | Controles táctiles: debajo de la vista de la pista hay un panel. Un dedo apoyado en la mitad izquierda de la pantalla hace aparecer un joystick que mueve a izquierda o derecha. En la mitad derecha, el toque va al botón más cercano: «Acelerar» (mientras se mantiene) o «Saltar» (al tocarlo). Se pueden usar a la vez. |
 
 ## 5. Obstáculos y caídas
 
@@ -78,6 +80,8 @@ Las decisiones técnicas están en [architec.md](./architec.md).
 3. **Carrera:** vista individual o pantalla dividida, con cronómetro y tramo actual.
 4. **Resultado:** tiempos, ganador o posición en el top 10, «Revancha» y «Menú».
 
+Los botones y selectores también se pueden tocar o pulsar con el mouse. En el celular el menú ofrece «Jugar» y «Top 10». La preparación muestra los botones «Correr» y «Volver», y el nombre se escribe con el teclado del teléfono. Tocar la mitad izquierda o derecha de un selector cambia a la opción anterior o a la siguiente.
+
 En cualquier pantalla, salvo la de preparación (donde se escribe el nombre), la tecla `F` activa o desactiva la pantalla completa. El juego se escala para ocupar la ventana o la pantalla manteniendo su proporción.
 
 ## 10. Presentación visual
@@ -109,7 +113,8 @@ El diseño de referencia está en Figma, página «Pista – en juego» del arch
 | ACE-06 | Ambas personas llegan con el mismo tiempo en décimas. | Se declara empate. |
 | ACE-07 | Un tiempo individual entra en el top 10. | Se muestra la tabla con su posición resaltada; se ve desde otro navegador o equipo y la lista nunca supera diez entradas. |
 | ACE-09 | Se juega sin conexión. | La carrera funciona; el top 10 y el resultado muestran el error de CLA-04. |
+| ACE-10 | Se abre el juego en un celular en vertical. | El juego ocupa la pantalla; se puede elegir nombre, colores y tabla tocando, y en la carrera se acelera, se salta y se mueve a la vez con los dos pulgares. |
 
 ## 12. Fuera de alcance
 
-Música, animaciones elaboradas, juego en red, mandos o controles táctiles, accesibilidad avanzada, límite de tiempo, pausa, curvas o rampas en la pista, desbloqueos y validación de los tiempos en el servidor.
+Música, animaciones elaboradas, juego en red, mandos, dos personas en el celular, pantalla horizontal en el celular, accesibilidad avanzada, límite de tiempo, pausa, curvas o rampas en la pista, desbloqueos y validación de los tiempos en el servidor.

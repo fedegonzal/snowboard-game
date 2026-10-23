@@ -1,6 +1,6 @@
 # Snowboard
 
-Juego de carreras de snowboard en 2D para el navegador, para uno o dos jugadores en el mismo teclado. Es una demo para una clase universitaria sobre cómo construir un proyecto con ayuda de IA.
+Juego de carreras de snowboard en 2D para el navegador, para uno o dos jugadores en el mismo teclado, o para uno en el celular. Es una demo para una clase universitaria sobre cómo construir un proyecto con ayuda de IA.
 
 ![Carrera de dos jugadores en pantalla dividida](docs/captura.png)
 
@@ -14,6 +14,8 @@ Juego de carreras de snowboard en 2D para el navegador, para uno o dos jugadores
 
 Si juega una sola persona, usa las flechas. Mientras se mantiene el acelerador se gana velocidad, hasta tres veces la base del tramo; al soltarlo se frena hasta detenerse en dos segundos.
 
+En el celular se juega en vertical y con los dos pulgares: el dedo apoyado en la mitad izquierda maneja un joystick para moverse a los costados, y en la mitad derecha están los botones «Acelerar» (mantener) y «Saltar» (tocar). Los menús se manejan tocando.
+
 En los menús se navega con las flechas y se acepta con `Enter`. `Esc` vuelve al menú. `F` activa o desactiva la pantalla completa (salvo en la preparación).
 
 Jugar en línea: https://fedegonzal.github.io/snowboard-game
@@ -21,7 +23,7 @@ Jugar en línea: https://fedegonzal.github.io/snowboard-game
 ## Requisitos
 
 - Node.js 20 o superior.
-- Chrome o Firefox de escritorio.
+- Chrome o Firefox de escritorio, o el navegador de un celular.
 
 ## Ejecución
 

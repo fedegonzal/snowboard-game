@@ -127,3 +127,13 @@ Las tareas visuales de M2 a M8 se resolvieron primero de forma provisional y se 
 - [x] `TopScene`: mostrar «Cargando…» y el error si no hay conexión.
 - [x] `RaceScene` y `ResultScene`: mostrar «Guardando…» al terminar y el error si no se pudo guardar.
 - [ ] Verificar ACE-07 y ACE-09.
+
+## M13. Versión para celular
+
+- [x] Actualizar necesidades, especificación, arquitectura, plan y README.
+- [x] `config.js`: detectar el celular y usar un lienzo vertical con la vista de carrera y el panel táctil.
+- [x] `ui/touch.js`: joystick flotante en la mitad izquierda y botones «Acelerar» y «Saltar» en la derecha, con varios dedos a la vez.
+- [x] `RaceScene`: leer la entrada del teclado o de los controles táctiles con la misma forma.
+- [x] Hacer que los botones de menú y los selectores se puedan tocar; pedir el nombre con el teclado del sistema.
+- [x] Menú con «Jugar» y «Top 10», y preparación con «Correr» y «Volver» en el celular; centrar las pantallas verticalmente.
+- [ ] Verificar ACE-10 en un celular Android y en un iPhone.
