@@ -20,8 +20,8 @@ Las decisiones técnicas están en [architec.md](./architec.md).
 
 | ID | Requisito |
 | --- | --- |
-| PIS-01 | Una única pista recta con salida y meta. Un descenso sin errores dura aproximadamente un minuto. |
-| PIS-02 | La pista tiene cuatro tramos consecutivos de igual longitud, coloreados verde, azul, rojo y negro. Cada tramo tiene una velocidad fija mayor que el anterior. |
+| PIS-01 | Una única pista recta con salida y meta. Un descenso sin errores a la velocidad base dura aproximadamente un minuto. |
+| PIS-02 | La pista tiene cuatro tramos consecutivos de igual longitud, coloreados verde, azul, rojo y negro. Cada tramo tiene una velocidad base mayor que el anterior. |
 | PIS-03 | Hay un bosque decorativo a ambos lados, fuera de la pista. Los bordes de la pista no se pueden atravesar. |
 | PIS-04 | Los obstáculos se colocan al azar al empezar cada carrera. En modo de dos personas, ambas reciben la misma distribución. |
 
@@ -29,9 +29,9 @@ Las decisiones técnicas están en [architec.md](./architec.md).
 
 | ID | Requisito |
 | --- | --- |
-| MOV-01 | Acciones: izquierda, derecha, frenar y saltar. No hay acción para acelerar. |
-| MOV-02 | Teclas: persona 1 usa `A`/`D` (lateral), `S` (frenar), `W` (saltar). Persona 2 usa las flechas `←`/`→`, `↓` y `↑`. En modo individual se usan las teclas de la persona 1. |
-| MOV-03 | La velocidad de descenso es la del tramo actual. Mientras se mueve lateralmente, se reduce a un 80 %. Mientras se frena, se reduce a un 40 %. Al soltar, vuelve de inmediato a la del tramo. |
+| MOV-01 | Acciones: izquierda, derecha, acelerar y saltar. No hay acción para frenar: se frena soltando el acelerador. |
+| MOV-02 | Teclas: persona 1 usa `A`/`D` (lateral), `S` (acelerar), `W` (saltar). Persona 2 usa las flechas `←`/`→`, `↓` y `↑`. En modo individual se usan las flechas. |
+| MOV-03 | Mientras se mantiene el acelerador, la velocidad de descenso crece de forma lineal hasta un máximo de cinco veces la velocidad base del tramo actual. Al soltarlo, baja de forma lineal hasta detenerse en dos segundos. Mientras se mueve lateralmente, el descenso se reduce a un 80 %. Tras una caída se parte de velocidad cero. |
 | MOV-04 | El salto se puede usar en cualquier momento y dura medio segundo; durante el salto se ignoran los obstáculos bajos (muñecos de nieve y montículos). |
 
 ## 5. Obstáculos y caídas
@@ -68,7 +68,7 @@ Las decisiones técnicas están en [architec.md](./architec.md).
 | --- | --- |
 | CLA-01 | Solo el modo individual registra tiempos. Se guardan los diez mejores en el navegador del equipo. |
 | CLA-02 | Una persona puede ocupar varias posiciones. Entre tiempos iguales queda primero el más antiguo; un tiempo igual al décimo no entra. |
-| CLA-03 | El top 10 se puede ver desde el menú principal. |
+| CLA-03 | El top 10 se puede ver desde el menú principal. Si un tiempo entra al top 10, al terminar la carrera se muestra la tabla con esa posición resaltada en el color de la campera, y luego el resultado. |
 
 ## 9. Pantallas
 
@@ -76,6 +76,8 @@ Las decisiones técnicas están en [architec.md](./architec.md).
 2. **Preparación:** nombre (individual), colores y tabla de cada participante.
 3. **Carrera:** vista individual o pantalla dividida, con cronómetro y tramo actual.
 4. **Resultado:** tiempos, ganador o posición en el top 10, «Revancha» y «Menú».
+
+En cualquier pantalla, salvo la de preparación (donde se escribe el nombre), la tecla `F` activa o desactiva la pantalla completa. El juego se escala para ocupar la ventana o la pantalla manteniendo su proporción.
 
 ## 10. Presentación visual
 
@@ -90,7 +92,7 @@ El diseño de referencia está en Figma, página «Pista – en juego» del arch
 | VIS-05 | Jugador: ilustración del snowboarder con el casco y la campera en los colores elegidos. Deja una huella en la nieve. |
 | VIS-06 | Estados del jugador: al saltar se agranda y proyecta una sombra; al caer queda tumbado; durante la inmunidad parpadea. |
 | VIS-07 | Interfaz de carrera: etiqueta del tramo actual con su color arriba a la izquierda, cronómetro arriba a la derecha y mensajes grandes en el centro (cuenta regresiva, «¡Caída!», llegada). En dos personas, cada vista muestra además el nombre del participante sobre su color. |
-| VIS-08 | Preparación: una tarjeta por participante con su ilustración (dos ilustraciones distintas), selectores de casco, campera y tabla con la fila activa resaltada, barras de velocidad y movimiento lateral de la tabla, vista previa del jugador y ayuda de teclas. |
+| VIS-08 | Preparación: una tarjeta por participante con la vista previa del jugador en sus colores arriba a la izquierda, selectores de casco, campera y tabla con la fila activa resaltada, barras de velocidad y movimiento lateral de la tabla y ayuda de teclas. |
 | VIS-09 | Menú, resultado y top 10 siguen el mismo estilo; el resultado muestra un trofeo al ganador o al entrar en el top 10. |
 
 ## 11. Criterios de aceptación
@@ -101,9 +103,10 @@ El diseño de referencia está en Figma, página «Pista – en juego» del arch
 | ACE-02 | Se compara la pista de ambas personas y luego se pide revancha. | Ambas tienen los mismos obstáculos; la revancha tiene una distribución distinta. |
 | ACE-03 | Un personaje choca con un obstáculo o un borde. | Queda detenido dos segundos, continúa desde el mismo punto y parpadea un segundo sin poder caer. |
 | ACE-04 | Un personaje salta sobre un muñeco de nieve o un montículo. | No cae. Un banderín sí lo hace caer aunque salte. |
-| ACE-05 | Se mantiene el freno o el movimiento lateral. | La velocidad baja según MOV-03 y se recupera al soltar. |
+| ACE-05 | Se mantiene el acelerador y luego se suelta. | La velocidad crece hasta cinco veces la base del tramo y, al soltar, se detiene en dos segundos (MOV-03). |
+| ACE-08 | Se pulsa `F` en el menú o en la carrera. | El juego pasa a pantalla completa escalado sin deformarse; otra pulsación lo devuelve a la ventana. |
 | ACE-06 | Ambas personas llegan con el mismo tiempo en décimas. | Se declara empate. |
-| ACE-07 | Un tiempo individual entra en el top 10. | Se guarda, se mantiene tras recargar la página y la lista nunca supera diez entradas. |
+| ACE-07 | Un tiempo individual entra en el top 10. | Se muestra la tabla con su posición resaltada; se guarda, se mantiene tras recargar la página y la lista nunca supera diez entradas. |
 
 ## 12. Fuera de alcance
 

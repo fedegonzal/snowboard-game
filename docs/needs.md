@@ -11,3 +11,9 @@ Se puede jugar de una o dos personas a la vez, tipo carrera. La vista será 2D, 
 El juego tendra una sola pista y la dificultad es ganarle al otro jugador en tiempo. Si juega una sola persona, el objetivo es mejorar tiempos anteriores y entrar al top 10.
 
 Queremos que el personaje se pueda personalizar antes de la carrera: casco, campera y tabla. La tabla podria tener atributos como adherencia (vincula velocidad y maniobrabilidad).
+
+## Mejoras tras la primera versión
+
+- Si juega una sola persona, se usan las flechas en lugar de las letras.
+- La flecha hacia abajo (y la `S`) deja de frenar y pasa a acelerar: mientras se mantiene se va cada vez más rápido, hasta cinco veces la velocidad base que marca el color de la pista. Al soltarla se frena hasta detenerse en dos segundos.
+- Se puede poner el juego en pantalla completa, escalando la imagen.

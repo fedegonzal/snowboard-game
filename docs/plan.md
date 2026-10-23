@@ -23,12 +23,13 @@ Planificación de alto nivel para construir el juego definido en [spec.md](./spe
 | M8 | Menú y preparación | Menú principal, nombre, colores y tablas. | `src/scenes/MenuScene.js`, `src/scenes/SetupScene.js` | PER-01 a PER-04, sección 9 | M6, M7 |
 | M10 | Presentación visual | Reemplazar la representación provisional por el diseño de Figma en todas las pantallas. | `public/assets/`, `src/render/` | VIS-01 a VIS-09 | M8 |
 | M9 | Ajuste y verificación | Ajustar valores para un descenso de ~1 minuto y repasar todos los criterios de aceptación. | `src/config.js` | PIS-01, ACE-01 a ACE-07 | M10 |
+| M11 | Mejoras de control y pantalla | Flechas en modo individual, acelerador en lugar de freno, pantalla completa escalada y top 10 resaltado al terminar. | `src/game/Rider.js`, `src/scenes/RaceScene.js`, `src/scenes/SetupScene.js`, `src/scenes/TopScene.js`, `src/main.js`, `index.html`, `src/config.js` | MOV-01 a MOV-03, CLA-03, sección 9, ARQ-11, ACE-05, ACE-07, ACE-08 | M9 |
 
 ## 3. Orden e hitos
 
 ```
 M1 → M2 → M3 → M4 → M5 ─┬→ M6 ─┐
-                        └→ M7 ─┴→ M8 → M10 → M9
+                        └→ M7 ─┴→ M8 → M10 → M9 → M11
 ```
 
 | Hito | Tras | Resultado demostrable |
@@ -39,6 +40,7 @@ M1 → M2 → M3 → M4 → M5 ─┬→ M6 ─┐
 | H4 | M7 | Carrera de dos personas en pantalla dividida. |
 | H5 | M10 | Juego con el aspecto definitivo del diseño. |
 | H6 | M9 | Juego completo, ajustado y verificado. |
+| H7 | M11 | Se acelera con `↓`/`S` y se juega en pantalla completa. |
 
 ## 4. Riesgos
 

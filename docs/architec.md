@@ -19,6 +19,7 @@ Criterio rector: pocos conceptos, poca configuración y código fácil de leer e
 | ARQ-07 | Persistencia | `localStorage`, una clave con el top 10 en JSON. | Sin servidor ni base de datos. Los récords quedan ligados al navegador y al puerto. |
 | ARQ-08 | Controles | Solo teclado, según MOV-02. Probar en el equipo de la demo que las pulsaciones simultáneas funcionan. | Teclado compartido entre dos personas. |
 | ARQ-09 | Sin conexión | Todas las dependencias se instalan localmente, incluida la fuente (paquete `@fontsource/fredoka`); no se cargan recursos remotos. | La demo no depende de Internet en el aula. |
+| ARQ-11 | Escalado | Escala `FIT` de Phaser centrada: el lienzo de 960×600 se escala a la ventana conservando la proporción. La pantalla completa usa la API del navegador a través de `scale.toggleFullscreen()`, con un único manejador de teclado en `main.js`. | Pantalla completa sin redibujar ni cambiar coordenadas. |
 | ARQ-10 | Pruebas | Verificación manual con los criterios de aceptación de la especificación. Sin framework de tests. | Suficiente para el alcance de la demo. |
 
 ## 3. Estructura del proyecto
@@ -28,7 +29,7 @@ index.html
 package.json
 public/assets/       Ilustraciones SVG exportadas de Figma
 src/
-  main.js            Configuración de Phaser y lista de escenas
+  main.js            Configuración de Phaser, escalado, pantalla completa y lista de escenas
   config.js          Constantes: velocidades, tiempos, tablas, colores, teclas
   scenes/
     MenuScene.js     Menú principal
