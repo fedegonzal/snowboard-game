@@ -60,6 +60,7 @@ export class SetupScene extends Phaser.Scene {
   }
 
   handleKey(e) {
+    this.sound.play(e.code === 'Enter' ? 'confirm' : 'select');
     if (e.code === 'Enter') return this.start();
     if (e.code === 'Escape') return this.scene.start('MenuScene');
 

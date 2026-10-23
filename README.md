@@ -21,21 +21,26 @@ Abrir la dirección local que indica Vite (por defecto `http://localhost:5173`).
 | Acción | Jugador 1 | Jugador 2 |
 | --- | --- | --- |
 | Moverse | `A` / `D` | `←` / `→` |
-| Frenar | `S` | `↓` |
+| Acelerar | `S` | `↓` |
 | Saltar | `W` | `↑` |
 
-En los menús se navega con las flechas y se acepta con `Enter`. `Esc` vuelve al menú.
+Si juega una sola persona, usa las flechas. Mientras se mantiene el acelerador se gana velocidad, hasta cinco veces la base del tramo; al soltarlo se frena hasta detenerse en dos segundos.
+
+En los menús se navega con las flechas y se acepta con `Enter`. `Esc` vuelve al menú. `F` activa o desactiva la pantalla completa (salvo en la preparación).
 
 ## Estructura
 
 ```
 docs/            Necesidades, especificación, arquitectura, plan y tareas
-public/assets/   Ilustraciones SVG exportadas de Figma
+public/assets/   Ilustraciones SVG exportadas de Figma y efectos de sonido (sounds/)
 src/game/        Reglas del juego (sin dependencias de Phaser)
-src/render/      Dibujo de la pista, el jugador, el HUD y la interfaz
+src/render/      Dibujo de la pista, el jugador, el HUD, la interfaz y los sonidos
 src/scenes/      Escenas de Phaser: menú, preparación, carrera, resultado y top 10
 src/config.js    Valores ajustables: velocidades, tiempos, tablas, colores y teclas
+tools/           Generador de los efectos de sonido
 ```
+
+Los sonidos se sintetizan con `python3 tools/generate-sounds.py` (solo biblioteca estándar).
 
 ## Documentación
 

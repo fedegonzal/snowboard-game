@@ -1,7 +1,8 @@
 import Phaser from 'phaser';
 import { preloadAssets, createRiderTextures } from '../render/assets.js';
+import { preloadSounds } from '../render/sounds.js';
 
-// Carga las ilustraciones y prepara las texturas del jugador antes del menú.
+// Carga las ilustraciones y los sonidos, y prepara las texturas del jugador antes del menú.
 export class BootScene extends Phaser.Scene {
   constructor() {
     super('BootScene');
@@ -9,6 +10,7 @@ export class BootScene extends Phaser.Scene {
 
   preload() {
     preloadAssets(this);
+    preloadSounds(this);
   }
 
   create() {

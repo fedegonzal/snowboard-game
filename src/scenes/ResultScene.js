@@ -17,7 +17,10 @@ export class ResultScene extends Phaser.Scene {
 
     const w = 460, x = cx - w / 2, y = 110, h = 250;
     card(this, x, y, w, h);
-    if (this.showTrophy(data)) this.add.image(x + 90, y + h / 2, 'trophy');
+    if (this.showTrophy(data)) {
+      this.add.image(x + 90, y + h / 2, 'trophy');
+      this.sound.play('win');
+    }
 
     const listX = this.showTrophy(data) ? x + 180 : x + 40;
     data.results.forEach((r, i) => {

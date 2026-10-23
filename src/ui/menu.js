@@ -11,12 +11,17 @@ export function createMenu(scene, x, y, options, { width = 280, gap = 14 } = {})
   keyboard.on('keydown-UP', () => {
     selected = (selected + options.length - 1) % options.length;
     refresh();
+    scene.sound.play('select');
   });
   keyboard.on('keydown-DOWN', () => {
     selected = (selected + 1) % options.length;
     refresh();
+    scene.sound.play('select');
   });
-  keyboard.on('keydown-ENTER', () => options[selected].action());
+  keyboard.on('keydown-ENTER', () => {
+    scene.sound.play('confirm');
+    options[selected].action();
+  });
 
   refresh();
   return buttons;

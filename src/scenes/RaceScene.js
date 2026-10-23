@@ -8,6 +8,7 @@ import { THEME } from '../render/theme.js';
 import { drawTrack } from '../render/trackView.js';
 import { createRiderView } from '../render/riderView.js';
 import { createHud } from '../render/hud.js';
+import { createRiderSounds } from '../render/sounds.js';
 
 const MAX_STEP_MS = 100; // evita saltos grandes si el navegador se detiene un momento
 const GO_MESSAGE_MS = 700;
@@ -30,6 +31,7 @@ export class RaceScene extends Phaser.Scene {
 
     drawTrack(this, this.track);
     this.riderViews = this.riders.map((r) => createRiderView(this, r));
+    this.riderSounds = this.riders.map((r) => createRiderSounds(this, r));
     this.views = this.createViews();
     this.inputs = this.riders.map((_, i) => this.input.keyboard.addKeys(KEYS[i]));
 
@@ -37,6 +39,9 @@ export class RaceScene extends Phaser.Scene {
     this.raceMs = 0;
     this.firstFinisher = null;
     this.ended = false;
+    for (let i = 0; i <= RACE.countdown; i++) {
+      this.time.delayedCall(i * 1000, () => this.sound.play(i < RACE.countdown ? 'beep' : 'go'));
+    }
 
     this.input.keyboard.on('keydown-ESC', () => this.scene.start('MenuScene'));
   }
@@ -110,6 +115,7 @@ export class RaceScene extends Phaser.Scene {
   render(time) {
     this.riders.forEach((rider, i) => {
       this.riderViews[i].update(time);
+      this.riderSounds[i].update();
       const { cam, hud } = this.views[i];
       cam.scrollX = this.track.width / 2 - cam.width / 2;
       cam.scrollY = rider.y - cam.height * 0.3;
