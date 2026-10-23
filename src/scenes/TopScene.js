@@ -1,5 +1,5 @@
 import Phaser from 'phaser';
-import { SCREEN, TOP } from '../config.js';
+import { SCREEN, TOP, COLORS } from '../config.js';
 import { loadTop } from '../game/leaderboard.js';
 import { formatTime } from '../game/time.js';
 import { THEME, outlinedStyle, textStyle } from '../render/theme.js';
@@ -11,7 +11,8 @@ export class TopScene extends Phaser.Scene {
     super('TopScene');
   }
 
-  create() {
+  // result: datos para ResultScene cuando se llega desde una carrera que entró al top 10.
+  create({ result }) {
     const cx = SCREEN.width / 2;
     this.add.text(cx, 50, 'Top 10', outlinedStyle(48)).setOrigin(0.5);
 
@@ -21,13 +22,18 @@ export class TopScene extends Phaser.Scene {
     for (let i = 0; i < TOP.size; i++) {
       const e = entries[i];
       const rowY = y + 14 + i * rowH;
-      const color = e ? THEME.ink : THEME.muted;
-      this.add.text(x + 28, rowY, `${i + 1}.`, textStyle(20, { color: THEME.muted }));
+      const mine = i + 1 === result?.topPosition;
+      if (mine) this.add.graphics().fillStyle(COLORS[result.players[0].jacket].value).fillRoundedRect(x + 14, rowY - 3, w - 28, rowH - 2, 12);
+      const color = mine ? THEME.white : e ? THEME.ink : THEME.muted;
+      this.add.text(x + 28, rowY, `${i + 1}.`, textStyle(20, { color: mine ? THEME.white : THEME.muted }));
       this.add.text(x + 72, rowY, e ? e.name : '—', textStyle(20, { weight: i < 3 && e ? 700 : 500, color }));
       this.add.text(x + w - 28, rowY, e ? formatTime(e.tenths) : '', textStyle(20, { color })).setOrigin(1, 0);
     }
 
-    createMenu(this, cx - 120, SCREEN.height - 76, [{ label: 'Volver', action: () => this.scene.start('MenuScene') }], { width: 240 });
+    const next = result
+      ? { label: 'Continuar', action: () => this.scene.start('ResultScene', result) }
+      : { label: 'Volver', action: () => this.scene.start('MenuScene') };
+    createMenu(this, cx - 120, SCREEN.height - 76, [next], { width: 240 });
     this.input.keyboard.on('keydown-ESC', () => this.scene.start('MenuScene'));
   }
 }

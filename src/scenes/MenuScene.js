@@ -17,7 +17,7 @@ export class MenuScene extends Phaser.Scene {
     createMenu(this, cx - 140, 210, [
       { label: '1 jugador', action: () => this.scene.start('SetupScene', { mode: 1 }) },
       { label: '2 jugadores', action: () => this.scene.start('SetupScene', { mode: 2 }) },
-      { label: 'Top 10', action: () => this.scene.start('TopScene') },
+      { label: 'Top 10', action: () => this.scene.start('TopScene', {}) }, // {} borra el resultado de una visita anterior
     ]);
     keyHints(this, cx, SCREEN.height - 56, [['Flechas', 'elegir'], ['Enter', 'aceptar'], ['F', 'pantalla completa']]);
   }

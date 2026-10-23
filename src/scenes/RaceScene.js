@@ -111,7 +111,10 @@ export class RaceScene extends Phaser.Scene {
       const [a, b] = results;
       winner = a.tenths === b.tenths ? 'tie' : a.tenths < b.tenths ? 0 : 1;
     }
-    this.scene.start('ResultScene', { mode: this.mode, players: this.playerConfigs, results, topPosition, winner });
+    const result = { mode: this.mode, players: this.playerConfigs, results, topPosition, winner };
+    // Si entró al top 10, se muestra la tabla antes del resultado.
+    if (topPosition) this.scene.start('TopScene', { result });
+    else this.scene.start('ResultScene', result);
   }
 
   render(time) {
